@@ -53,6 +53,14 @@ class YouTubeIt
           fields_param << "entry[yt:statistics/@viewCount > #{fields[:view_count]}]"
         end
 
+        if fields[:gt_duration]
+          fields_param << "entry[media:group/yt:duration/@seconds > #{fields[:gt_duration]}]"
+        end
+
+        if fields[:lt_duration]
+          fields_param << "entry[media:group/yt:duration/@seconds < #{fields[:lt_duration]}]"
+        end
+
 
         return "&fields=#{URI.escape(fields_param.join(","))}"
       end

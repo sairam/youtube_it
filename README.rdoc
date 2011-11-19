@@ -4,10 +4,10 @@
   way to access the latest and most complete access to YouTube's video API.
   In comparison with the earlier Youtube interfaces, this new API and
   library offers much-improved flexibility around executing complex search
-  queries to obtain well-targeted video search results.  In addition, standard video management 
+  queries to obtain well-targeted video search results.  In addition, standard video management
   including but not limited to uploading, deleting, updating, like, dislike, ratings and
   comments.
-  
+
 == INSTALLATION & SETUP:
   * Create a youtube account.
   * Create a developer key here http://code.google.com/apis/youtube/dashboard.
@@ -31,7 +31,7 @@ Creating a client:
 
 Client with developer key:
   $ client = YouTubeIt::Client.new(:dev_key => "developer_key")
-    
+
 Client with youtube account and developer key:
   $ client = YouTubeIt::Client.new(:username => "youtube_username", :password =>  "youtube_passwd", :dev_key => "developer_key")
 
@@ -72,12 +72,16 @@ Fields Parameter(experimental features):
 
   Filter by date
   $ client.videos_by(:fields => {:published  => ((Date.today)})
-  $ client.videos_by(:fields => {:recorded   => ((Date.today)})  
+  $ client.videos_by(:fields => {:recorded   => ((Date.today)})
 
   Filter by date with range
   $ client.videos_by(:fields => {:published  => ((Date.today - 30)..(Date.today))})
-  $ client.videos_by(:fields => {:recorded   => ((Date.today - 30)..(Date.today))})  
-  
+  $ client.videos_by(:fields => {:recorded   => ((Date.today - 30)..(Date.today))})
+
+  Filter by duration(in seconds) ( Greater than and Less than duration specified in seconds)
+  $ client.videos_by(:fields => {:published  => ((Date.today - 30)..(Date.today)), :gt_duration => 300 })
+  $ client.videos_by(:fields => {:published  => ((Date.today - 30)..(Date.today)), :lt_duration => 301 })
+
 == VIDEO MANAGEMENT
 
 Note: YouTube account, OAuth or AuthSub enables video management.
@@ -99,7 +103,7 @@ My Videos:
 
 My Video:
   $ client.my_video(video_id)
-  
+
 Profile Details:
   $ client.profile(user) #default: current user
 
@@ -154,7 +158,7 @@ Add Video To Playlist:
 
 Remove Video From Playlist:
   $ client.remove_video_from_playlist(playlist_id, playlist_entry_id)
-  
+
 == ACCESS CONTROL LIST
 
   You can give permissions in your videos, for example denied comments, rate, etc...
